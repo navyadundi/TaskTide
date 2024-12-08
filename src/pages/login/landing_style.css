@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap");
+
+:root {
+    --color-primary: #5ec576;
+    --color-secondary: #ffcb03;
+    --color-tertiary: #ff585f;
+    --color-primary-darker: #4bbb7d;
+    --color-secondary-darker: #ffbb00;
+    --color-tertiary-darker: #fd424b;
+    --color-primary-opacity: #5ec5763a;
+    --color-secondary-opacity: #ffcd0331;
+    --color-tertiary-opacity: #ff58602d;
+    --white: #ffffff;
+    --black: #000000;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Noto Sans JP", sans-serif;
+    background-color: #f3f3f3;
+}
+
+.navbar {
+    background-color: var(--color-primary-darker);
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.nav__logo {
+    height: 4.5rem;
+    transition: all 0.3s;
+}
+
+.features-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.feature-box {
+    border-radius: 10px;
+    margin: 1rem;
+    padding: 4rem 2rem;
+    color: var(--white);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.feature-box i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.feature-box h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--color-primary-darker);
+    color: var(--white);
+}
+
+.footer__links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
+.footer__links li {
+    margin: 0 0.5rem;
+}
+
+.footer__links a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer__links a:hover {
+    color: var(--color-secondary);
+}
+
+#profileImage {
+    border: 2px solid var(--white);
+    transition: border-color 0.3s ease;
+}
+
+#profileImage:hover {
+    border-color: var(--color-secondary);
+}
+
+.modal-content {
+    background-color: var(--color-primary-opacity);
+}
+
+.modal-header, .modal-body {
+    background-color: var(--color-primary);
+    color: var(--white);
+}
+
+.btn-primary {
+    background-color: var(--color-primary-darker);
+    border-color: var(--color-primary-darker);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+@media (max-width: 767px) {
+    .feature-box {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .feature-box {
+        width: 45%;
+    }
+}
+
+@media (min-width: 992px) {
+  .feature-box {
+    width: 45%;
+}
+}
+
+.nav-item.dropdown {
+display: flex;
+align-items: center;
+}
+
+.nav-item.dropdown .dropdown-toggle::after {
+display: none;
+}
+

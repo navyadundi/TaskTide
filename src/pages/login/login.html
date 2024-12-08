@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignIn&SignUp</title>
+    <link rel="stylesheet" type="text/css" href="/src/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form action="javascript:void(0);" class="sign-in-form">
+                    <h2 class="title">Sign In</h2>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="text" id="login-identifier" placeholder="Email or Username">
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="login-password" placeholder="Password">
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember-me">
+                            <label for="remember-me">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password" onclick="openForgotPasswordModal()">Forgot password?</a>
+                    </div>
+                    <input type="submit" value="Login" class="btn solid" onclick="login()">
+                </form>
+                
+                <!-- Sign-Up Form -->
+                <form action="javascript:void(0);" class="sign-up-form">
+                    <h2 class="title">Sign Up</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" placeholder="Username">
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="Email">
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="Password">
+                    </div>
+                    <input type="submit" value="Sign Up" class="btn solid" onclick="signup()">
+                </form>
+            </div>
+        </div>
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>New here?</h3>
+                    <p>Join us on a journey of productivity and growth—together, we can achieve more and reach new heights!</p>
+                    <button class="btn transparent" id="sign-up-btn">Sign Up</button>
+                </div>
+                <img src="./img/log.svg" class="image" alt="">
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>One of us?</h3>
+                    <p>Thank you for joining us on this journey of productivity! Let's continue to achieve great things together!</p>
+                    <button class="btn transparent" id="sign-in-btn">Sign In</button>
+                </div>
+                <img src="./img/register.svg" class="image" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgot-password-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeForgotPasswordModal()">&times;</span>
+            <h2>Forgot Password</h2>
+            <div class="input-field">
+                <i class="fas fa-envelope"></i>
+                <input type="text" id="forgot-email" placeholder="Email">
+            </div>
+            <button class="btn solid" onclick="resetPassword()">Reset Password</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+        import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDakKl_idZX1nDBa9PfQuA9SrDqr3BKhfo",
+            authDomain: "login-database-e9171.firebaseapp.com",
+            projectId: "login-database-e9171",
+            storageBucket: "login-database-e9171.appspot.com",
+            messagingSenderId: "1065399755718",
+            appId: "1:1065399755718:web:f2393632f70ef0048748c7"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const database = getDatabase();
+
+        window.signup = function() {
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!validateEmail(email) || !validatePassword(password)) {
+                alert('Email or password is not valid');
+                return;
+            }
+            if (!validateField(username)) {
+                alert('Username is not valid');
+                return;
+            }
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    sendEmailVerification(user).then(() => {
+                        alert('Verification email sent. Please verify your email before logging in.');
+                    });
+
+                    const userRef = ref(database, 'users/' + user.uid);
+                    const userData = {
+                        username: username,
+                        email: email,
+                        last_login: Date.now()
+                    };
+                    set(userRef, userData);
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        };
+
+        window.login = function() {
+    const identifier = document.getElementById('login-identifier').value;
+    const password = document.getElementById('login-password').value;
+
+    if (!validateField(identifier) || !validatePassword(password)) {
+        alert('Email/Username or password is not valid');
+        return;
+    }
+
+    if (validateEmail(identifier)) {
+        signInWithEmailAndPassword(auth, identifier, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                if (!user.emailVerified) {
+                    alert('Please verify your email before logging in.');
+                    return;
+                }
+                alert('User Logged In!');
+                window.location.href = '/src/pages/login/landing_page.html';
+            })
+            .catch((error) => {
+                alert(error.message);
+            });
+    } else {
+        const dbRef = ref(getDatabase());
+        get(child(dbRef, `users`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                let userFound = false;
+                snapshot.forEach((childSnapshot) => {
+                    const userData = childSnapshot.val();
+                    if (userData.username === identifier) {
+                        signInWithEmailAndPassword(auth, userData.email, password)
+                            .then((userCredential) => {
+                                const user = userCredential.user;
+                                if (!user.emailVerified) {
+                                    alert('Please verify your email before logging in.');
+                                    return;
+                                }
+                                alert('User Logged In!');
+                                window.location.href = '/src/pages/login/landing_page.html';
+                            })
+                            .catch((error) => {
+                                alert(error.message);
+                            });
+                        userFound = true;
+                    }
+                });
+                if (!userFound) {
+                    alert('Username not found');
+                }
+            } else {
+                alert('No users found');
+            }
+        }).catch((error) => {
+            alert(error.message);
+        });
+    }
+};
+
+
+        window.openForgotPasswordModal = function() {
+            document.getElementById('forgot-password-modal').style.display = 'block';
+        };
+
+        window.closeForgotPasswordModal = function() {
+            document.getElementById('forgot-password-modal').style.display = 'none';
+        };
+
+        window.resetPassword = function() {
+            const email = document.getElementById('forgot-email').value;
+            sendPasswordResetEmail(auth, email)
+                .then(() => {
+                    alert('Password reset email sent!');
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        };
+
+        function validateEmail(email) {
+            const expression = /^[^@]+@\w+(\.\w+)+\w$/;
+            return expression.test(email);
+        }
+
+        function validatePassword(password) {
+            return password.length >= 6;
+        }
+
+        function validateField(field) {
+            return field != null && field.length > 0;
+        }
+
+
+        function addEvent() {
+  const eventContent = document.getElementById('event-content').value;
+  const eventDate = document.getElementById('event-date').value;
+  const userId = auth.currentUser.uid;
+  const eventsRef = ref(database, 'users/' + userId + '/events');
+  const newEventRef = push(eventsRef);
+  set(newEventRef, {
+      content: eventContent,
+      date: eventDate,
+      timestamp: Date.now()
+  });
+}
+
+function getEvents() {
+  const userId = auth.currentUser.uid;
+  const eventsRef = ref(database, 'users/' + userId + '/events');
+  onValue(eventsRef, (snapshot) => {
+      const events = snapshot.val();
+      // Render events to UI
+  });
+}
+
+    </script>
+    <script src="/src/pages/login/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <link rel="shortcut icon" type="image/png" href="img/time.png" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src//css/style.css" />
+  <link rel="stylesheet" href="/src//css/responsive.css" />
+  <title>TaskTide</title>
+  <script defer src="/src/pages/home/index.js"></script>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="nav">
+      <img src="img/tasktide_logo_3501.png" alt="TaskTide logo" class="nav__logo" id="logo" />
+      <ul class="nav__links">
+        <li class="nav__item">
+          <a class="nav__link" href="#section--1">About Us</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="#section--2">How to be Productive</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="#section--3">Motivation</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link nav__link--btn btn--show-modal" href="/src/pages/login/login.html">Open
+            account</a>
+        </li>
+      </ul>
+      <img class="hamburger" src="img/hamburger.png" alt="" />
+    </nav>
+
+    <div class="header__title">
+      <section class="header-content">
+        <h1>
+            Ride
+          <!-- Green highlight effect -->
+          <span class="highlight">Wave</span>
+          Of Your<br />
+          <span class="highlight">Productivity</span>
+        </h1>
+        <h4>TaskTide: Your Ultimate Productivity Companion.</h4>
+        <button class="btn--text btn--scroll-to">Learn more &DownArrow;</button>
+      </section>
+
+      <img src="img/logo2.jpg" class="header__img" alt="header_img" />
+    </div>
+  </header>
+
+  <section class="section section-1 " id="section--1">
+    <div class="section__title">
+      <h2 class="section__description">About Us</h2>
+      <h3 class="section__header">
+        Everything you need, to be Productive.
+      </h3>
+    </div>
+
+    <div class="features">
+      <section class="feature-one">
+        <img src="img/digital-lazy.jpg" data-src="img/digital.jpg" alt="Computer" class="features__img lazy-img" />
+        <div class="features__feature">
+          <div class="features__icon">
+            <svg>
+              <use xlink:href="img/icons.svg#icon-monitor"></use>
+            </svg>
+          </div>
+          <h5 class="features__header">Best Productive Area</h5>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde alias
+            sint quos? Accusantium a fugiat porro reiciendis saepe quibusdam
+            debitis ducimus.
+          </p>
+        </div>
+      </section>
+      <section class="feature-two">
+        <div class="features__feature">
+          <div class="features__icon">
+            <svg>
+              <use xlink:href="img/icons.svg#icon-trending-up"></use>
+            </svg>
+          </div>
+          <h5 class="features__header">Time is Money</h5>
+          <p>
+            Nesciunt quos autem dolorum voluptates cum dolores dicta fuga
+            inventore ab? Nulla incidunt eius numquam sequi iste pariatur
+            quibusdam!
+          </p>
+        </div>
+        <img src="img/grow-lazy.jpg" data-src="img/grow.jpg" alt="Plant" class="features__img lazy-img" />
+      </section>
+      <section class="feature-three">
+        <img src="img/card-lazy.jpg" data-src="img/card.jpg" alt="Credit card" class="features__img lazy-img" />
+        <div class="features__feature">
+          <div class="features__icon">
+            <svg>
+              <use xlink:href="img/icons.svg#icon-credit-card"></use>
+            </svg>
+          </div>
+          <h5 class="features__header">Be Productive Hero</h5>
+          <p>
+            Quasi, fugit in cumque cupiditate reprehenderit debitis animi enim
+            eveniet consequatur odit quam quos possimus assumenda dicta fuga
+            inventore ab.
+          </p>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="section " id="section--2">
+    <div class="section__title">
+      <h2 class="section__description">How to be Productive</h2>
+      <h3 class="section__header">
+        Time Management is Life Management.
+      </h3>
+    </div>
+
+    <section class="operations">
+      <section class="operations__tab-container">
+        <button class="btn operations__tab operations__tab--1 operations__tab--active" data-tab="1">
+          <span>01</span>Breaking Tasks
+        </button>
+        <button class="btn operations__tab operations__tab--2" data-tab="2">
+          <span>02</span>Pomodoro Technique
+        </button>
+        <button class="btn operations__tab operations__tab--3" data-tab="3">
+          <span>03</span>Reward Yourself
+        </button>
+      </section>
+      <div class="operations__content operations__content--1 operations__content--active">
+        <div class="operations__icon operations__icon--1">
+          <svg>
+            <use xlink:href="img/icons.svg#icon-book"></use>
+          </svg>
+        </div>
+        <h5 class="operations__header">
+          Break Tasks into Smaller Steps.
+        </h5>
+        <p>
+          Action: Break down your tasks into smaller, manageable steps. This makes tasks seem less daunting and easier to start.
+        </p>
+      </div>
+
+      <div class="operations__content operations__content--2">
+        <div class="operations__icon operations__icon--2">
+          <svg>
+            <use xlink:href="img/icons.svg#icon-trending-up"></use>
+          </svg>
+        </div>
+        <h5 class="operations__header">
+          Set Clear Goals. Use the Pomodoro Technique
+        </h5>
+        <p>
+          Action: Define clear, achievable goals for your day or week. Having specific goals can provide direction and motivation. Work for 25 minutes, then take a 5-minute break. Repeat. This technique helps maintain focus and prevent burnout.
+          
+        </p>
+      </div>
+      <div class="operations__content operations__content--3">
+        <div class="operations__icon operations__icon--3">
+          <svg>
+            <use xlink:href="img/icons.svg#icon-user-x"></use>
+          </svg>
+        </div>
+        <h5 class="operations__header">
+          Eliminate Distractions. Reward Yourself.
+        </h5>
+        <p>
+          Action: Set up small rewards for completing tasks. Rewards can motivate you to keep working. Identify when you are most productive and plan your most important tasks during that time. Working during your peak times can make tasks feel easier.
+        </p>
+      </div>
+    </section>
+  </section>
+
+  <section class="section " id="section--3">
+    <div class="section__title section__title--testimonials">
+      <h2 class="section__description">Motivation? Consistency </h2>
+      <h3 class="section__header">
+        Maintain a positive attitude towards your work and goals.
+      </h3>
+    </div>
+
+    <div class="slider">
+      <div class="slide slide--1">
+        <div class="testimonial">
+          <h5 class="testimonial__header">Best insightful sayings about time</h5>
+          <blockquote class="testimonial__text">
+            "We always overestimate the change that will occur in the next two years and underestimate the change that will occur in the next ten. Don't let yourself be lulled into inaction."          </blockquote>
+          <address class="testimonial__author">
+            <img src="img/user-1.jpg" alt="" class="testimonial__photo" />
+            <h6 class="testimonial__name">Bill Gates</h6>
+            <p class="testimonial__location">San Francisco, USA</p>
+          </address>
+        </div>
+      </div>
+
+      <div class="slide slide--2">
+        <div class="testimonial">
+          <h5 class="testimonial__header">
+            Doing the best at this moment puts you in the best place for the next moment.
+          </h5>
+          <blockquote class="testimonial__text">
+            "The big secret in life is that there is no big secret. Whatever your goal, you can get there if you’re willing to work."
+          </blockquote>
+          <address class="testimonial__author">
+            <img src="img/user-2.jpg" alt="" class="testimonial__photo" />
+            <h6 class="testimonial__name">Oprah Winfrey</h6>
+            <p class="testimonial__location">London, UK</p>
+          </address>
+        </div>
+      </div>
+
+      <div class="slide slide--3">
+        <div class="testimonial">
+          <h5 class="testimonial__header">
+            Celebrate your successes.
+          </h5>
+          <blockquote class="testimonial__text">
+            "There is only one boss. The customer. And he can fire everybody in the company from the chairman on down, simply by spending his money somewhere else."
+          </blockquote>
+          <address class="testimonial__author">
+            <img src="img/user-3.jpg" alt="" class="testimonial__photo" />
+            <h6 class="testimonial__name">Sam Walton</h6>
+            <p class="testimonial__location">Lisbon, Portugal</p>
+          </address>
+        </div>
+      </div>
+      <button class="slider__btn slider__btn--left">&larr;</button>
+      <button class="slider__btn slider__btn--right">&rarr;</button>
+      <div class="dots"></div>
+    </div>
+  </section>
+
+  <section class="section section--sign-up ">
+    <div class="section__title">
+      <h3 class="section__header">
+        You can only manage time if you track it right.
+      </h3>
+    </div>
+    <button class="btn btn--show-modal" href="#">You can do it!</button>
+  </section>
+
+  <footer class="footer">
+    <ul class="footer__nav">
+      <li class="footer__item">
+        <a class="footer__link" href="#">About</a>
+      </li>
+      <li class="footer__item">
+        <a class="footer__link" href="#">Pricing</a>
+      </li>
+      <li class="footer__item">
+        <a class="footer__link" href="#">Terms of Use</a>
+      </li>
+      <li class="footer__item">
+        <a class="footer__link" href="#">Privacy Policy</a>
+      </li>
+      <li class="footer__item">
+        <a class="footer__link" href="#">Careers</a>
+      </li>
+      <li class="footer__item">
+        <a class="footer__link" href="#">Blog</a>
+      </li>
+      <li class="footer__item">
+        <a class="footer__link" href="#">Contact Us</a>
+      </li>
+    </ul>
+    <img src="img/tasktide_logo_3501.png" alt="Logo" class="footer__logo" />
+    <p class="footer__copyright">
+      Organize, Track, and Achieve. Use our Perfect Productivity Toolkit. This helps in Simplify Your Workflow. Plan, Execute, Succeed.
+    </p>
+  </footer>
+
+  <div class="overlay hidden"></div>
+</body>
+
+</html>
